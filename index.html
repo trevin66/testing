@@ -43,13 +43,13 @@
             <div class="form-group">
                 <label for="password">Password</label>
                 <input class="form-control" id="password" type="text" ng-model="password" name="password" ng-change="validatePassword(myForm)" required>
-                <p ng-show="myForm.password.$touched && myForm.password.$error.required">A password is required</p>
+                <p id="password-required" ng-show="myForm.password.$touched && myForm.password.$error.required">A password is required</p>
             </div>
             <div class="form-group">
                 <label for="confirm_password">Confirm Password</label>
                 <input class="form-control" ng-change="validatePassword(myForm)" id="confirm_password" type="text" ng-model="confirm_password" name="confirm_password" required>
-                <p ng-show="myForm.password.$error.passwordsMatch">Passwords must match.</p>
-                <p ng-show="myForm.confirm_password.$touched && myForm.confirm_password.$error.required">You must confirm your password</p>
+                <p id="password-match" ng-show="myForm.password.$error.passwordsMatch">Passwords must match.</p>
+                <p id="confirm-required" ng-show="myForm.confirm_password.$touched && myForm.confirm_password.$error.required">You must confirm your password</p>
             </div>
             <button type="reset" class="btn btn-secondary" name="reset">Reset</button>
             <button type="submit" class="btn btn-primary" ng-click="submitForm()">Sign Me Up!</button>

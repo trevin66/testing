@@ -73,7 +73,7 @@ describe('Password validation', function() {
 
 // Email testing
 describe('Email required', function() {
-	browser.get('http://localhost:8080');
+	browser.get('http://localhost:8080/#/');
 	var input_email = element(by.css('#email'));
 	var required = element(by.css('#needEmail'));
 	it('should not show error if email field is filled', function() {
@@ -89,7 +89,7 @@ describe('Email required', function() {
 });
 
 describe('Valid email', function() {
-	browser.get('http://localhost:8080');
+	browser.get('http://localhost:8080/#/');
 	var input_email = element(by.css('#email'));
 	var valid = element(by.css('#validEmail'));
 	it('should not show error if valid email is filled', function() {
@@ -107,7 +107,7 @@ describe('Valid email', function() {
 
 // Submit form testing
 describe('Valid form filled out', function() {
-	browser.get('http://localhost:8080');
+	browser.get('http://localhost:8080/#/');
 	var submit = element(by.css('#submit'));
 	var errors = element(by.css('.help-block')).isDisplayed();
 

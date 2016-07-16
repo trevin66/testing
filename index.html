@@ -25,7 +25,9 @@
         <form name="myForm" ng-controller="FormCtrl" role="form" novalidate>
             <div class="form-group">
                 <label for="email">Email</label>
-                <input class="form-control" id="email" type="text" name="email" ng-model="email" placeholder="email address">
+                <input class="form-control" id="email" type="text" name="email" ng-model="email" placeholder="Email address" required></input>
+                <p id="needEmail" class="help-block" ng-if="myForm.email.$touched">An email is required.</p>
+                <p id="validEmail" class="help-block" ng-show="myForm.email.$error.email">This is not a valid email address.</p>
             </div>
             <div class="form-group">
                 <label for="first_name">First Name</label>

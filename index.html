@@ -37,8 +37,8 @@
                 <p ng-show="myForm.last_name.$touched && myForm.last_name.$error.required">A last name is required</p>
             </div>
             <div class="form-group">
-                <label for="birthdate">Birthdate</label>
-                <input class="form-control" id="birthdate" type="text" name="birthdate" ng-model="birthdate" placeholder="your birthdate">
+                <label for="birthdate">Birthdate:</label>
+                <input class="form-control" id="birthdate" type="text" name="birthdate" ng-model="birthdate" placeholder="mm/dd/yyyy">
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
@@ -51,7 +51,7 @@
                 <p ng-show="myForm.password.$error.passwordsMatch">Passwords must match.</p>
                 <p ng-show="myForm.confirm_password.$touched && myForm.confirm_password.$error.required">You must confirm your password</p>
             </div>
-            <button type="button" class="btn btn-secondary" name="reset">Reset</button>
+            <button type="reset" class="btn btn-secondary" name="reset">Reset</button>
             <button type="submit" class="btn btn-primary" ng-click="submitForm()">Sign Me Up!</button>
         </form>
     </main>

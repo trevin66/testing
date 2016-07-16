@@ -48,3 +48,36 @@ describe('Password validation', function() {
 		expect(passwordRequiredWarn.isDisplayed()).toBe(true);
 	});
 });
+
+// Email testing
+describe('Email required', function() {
+	browser.get('http://localhost:8080');
+	var input_email = element(by.css('#email'));
+	var required = element(by.css('#needEmail'));
+	it('should not show error if email field is filled', function() {
+		input_email.sendKeys('pepe@meme.com');
+		expect(required.isDisplayed()).toEqual(false);
+	})
+	it('should show error if email field is left empty', function() {
+		input_email.clear();
+		input_email.sendKeys('Canada');
+		input_email.sendKeys('Tyler1 looks like a Geodude');
+		expect(required.isDisplayed()).toEqual(true);
+	})
+});
+
+describe('Valid email', function() {
+	browser.get('http://localhost:8080');
+	var input_email = element(by.css('#email'));
+	var valid = element(by.css('#validEmail'));
+	it('should not show error if valid email is filled', function() {
+		input_email.sendKeys('pepe@meme.com');
+		expect(required.isDisplayed()).toEqual(false);
+	})
+	it('should show error if email field is invalid', function() {
+		input_email.clear();
+		input_email.sendKeys('Canada');
+		input_email.sendKeys('Tyler1 looks like a Geodude');
+		expect(required.isDisplayed()).toEqual(true);
+	})
+});

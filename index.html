@@ -27,7 +27,7 @@
                 <label for="email">Email</label>
                 <input class="form-control" id="email" type="text" name="email" ng-model="email" placeholder="Email address" required></input>
                 <p id="needEmail" class="help-block" ng-if="myForm.email.$touched">An email is required.</p>
-                <p id="validEmail" class="help-block" ng-show="myForm.email.$error.email">This is not a valid email address.</p>
+                <p id="validEmail" class="help-block" ng-show="myForm.email.$invalid">This is not a valid email address.</p>
             </div>
             <div class="form-group">
                 <label for="first_name">First Name</label>
@@ -36,7 +36,7 @@
             <div class="form-group">
                 <label for="last_name">Last Name</label>
                 <input class="form-control" id="last_name" type="text" name="last_name" ng-model="last_name" placeholder="your last name" required>
-                <p id="last-required" ng-show="myForm.last_name.$touched && myForm.last_name.$error.required">A last name is required</p>
+                <p id="last-required" class="help-block" ng-show="myForm.last_name.$touched && myForm.last_name.$error.required">A last name is required</p>
             </div>
             <div class="form-group">
                 <label for="birthdate">Birthdate:</label>
@@ -45,16 +45,16 @@
             <div class="form-group">
                 <label for="password">Password</label>
                 <input class="form-control" id="password" type="text" ng-model="password" name="password" ng-change="validatePassword(myForm)" required>
-                <p id="password-required" ng-show="myForm.password.$touched && myForm.password.$error.required">A password is required</p>
+                <p id="password-required" class="help-block" ng-show="myForm.password.$touched && myForm.password.$error.required">A password is required</p>
             </div>
             <div class="form-group">
                 <label for="confirm_password">Confirm Password</label>
                 <input class="form-control" ng-change="validatePassword(myForm)" id="confirm_password" type="text" ng-model="confirm_password" name="confirm_password" required>
-                <p id="password-match" ng-show="myForm.password.$error.passwordsMatch">Passwords must match.</p>
-                <p id="confirm-required" ng-show="myForm.confirm_password.$touched && myForm.confirm_password.$error.required">You must confirm your password</p>
+                <p id="password-match" class="help-block" ng-show="myForm.password.$error.passwordsMatch">Passwords must match.</p>
+                <p id="confirm-required" class="help-block" ng-show="myForm.confirm_password.$touched && myForm.confirm_password.$error.required">You must confirm your password</p>
             </div>
             <button type="reset" class="btn btn-secondary" name="reset">Reset</button>
-            <button type="submit" class="btn btn-primary" ng-click="submitForm()">Sign Me Up!</button>
+            <button id="submit" type="submit" class="btn btn-primary" ng-disabled="myForm.$invalid" ng-click="submitForm()">Sign Me Up!</button>
         </form>
     </main>
 </body>

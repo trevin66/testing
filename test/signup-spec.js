@@ -96,10 +96,56 @@ describe('Valid email', function() {
 		input_email.sendKeys('pepe@meme.com');
 		expect(required.isDisplayed()).toEqual(false);
 	})
+
 	it('should show error if email field is invalid', function() {
 		input_email.clear();
 		input_email.sendKeys('Canada');
 		input_email.sendKeys('Tyler1 looks like a Geodude');
 		expect(required.isDisplayed()).toEqual(true);
+	})
+});
+
+// Submit form testing
+describe('Valid form filled out', function() {
+	browser.get('http://localhost:8080');
+	var submit = element(by.css('#submit'));
+	var errors = element(by.css('.help-block')).isDisplayed();
+
+	it('should not allow the form to complete if there are invalid fields', function() {
+		if(errors == true) {
+			expect(submit.isEnalbed()).toEqual(false);
+		}
+	})
+
+	it('should not allow the form to complete if there are blank fields', function() {
+		var email = element(by.css('#email'));
+		var fName = element(by.css('#first_name'));
+		var lName = element(by.css('#last_name'));
+		var bDay = element(by.css('#birthdate'));
+		var password = element(by.css('#password'));
+		var confirm = element(by.css('#confirm_password'));
+
+		// fields completed
+		email.sendKeys('pepe@meme.com');
+		fName.sendKeys('Kevin');
+		lName.sendKeys('Smith');
+		bDay.sendKeys('02/14/1996');
+		password.sendKeys('supersecret');
+		confirm.sendKeys('supersecret');
+
+		// blank fields
+		email.clear();
+		fName.clear();
+		lName.clear();
+		bDay.clear();
+		password.clear();
+		confirm.clear();
+		expect(submit.isEnabled()).toEqual(false);
+	})
+	
+	it('should allow the form to complete if there are no invalid fields', function() {
+		if(errors == false) {
+			expect(submit.isEnabled()).toEqual(true);
+		}
 	})
 });

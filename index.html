@@ -31,8 +31,7 @@
             </div>
             <div class="form-group">
                 <label for="first_name">First Name</label>
-                <input class="form-control" id="first_name" type="text" name="first_name" ng-model="first_name" placeholder="your first name" required>
-                <p id="first-required" class="help-block" ng-show="myForm.first_name.$touched && myForm.first_name.$error.required">A first name is required.</p>
+                <input class="form-control" id="first_name" type="text" name="first_name" ng-model="first_name" placeholder="your first name">
             </div>
             <div class="form-group">
                 <label for="last_name">Last Name</label>
@@ -42,7 +41,7 @@
             <div class="form-group">
                 <label for="birthdate">Birthdate:</label>
                 <input class="form-control" id="birthdate" type="text" name="birthdate" ng-model="birthdate" placeholder="Your Birthdate" ng-change="validateBirthdate(myForm)" required>
-                <p id="birthdate required" ng-show="myForm.birthdate.$touched && myForm.birthdate.$error.required">A birthdate is required.</p>
+                <p id="needBirthdate" ng-show="myForm.birthdate.$touched && myForm.birthdate.$error.required">A birthdate is required.</p>
                 <p id="validDate" ng-show="myForm.birthdate.$error.validDate">You must enter a valid date.</p>
                 <p id="oldEnough" ng-show="myForm.birthdate.$error.minYear">You must be at least 13.</p>
                 <p id="tooOld" ng-show="myForm.birthdate.$error.maxYear">As of 13 May 2016 there is only one person born before 30 November 2016.</p>

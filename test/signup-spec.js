@@ -91,7 +91,7 @@ describe('Valid email required', function() {
 	})
 	
 	it('should show error if email field is left empty', function() {
-		var email = element(by.css("#email")); 
+		var email = element(by.css("#email"));
 		email.clear();
 		var required = element(by.css("#needEmail"));
 		expect(required.isDisplayed()).toBe(true);

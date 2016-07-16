@@ -1,10 +1,32 @@
-//test suite for first name
-describe('First name field', function() {
-	it('', function() {
+//test suite for last name
+describe('Last name field', function() {
+	//open the page
+	beforeEach(function() {
+		browser.get('http://localhost:8080/#/');
+	});
 
+	it('should display a warning if no name is entered', function() {
+		var lastInput = element(by.model('last_name'));
+		lastInput.sendKeys(' ');
+		lastInput.clear();
+		//clear method seems to leave the last input focused, so i send keys to another unrelated field to defocus this one
+		var confirmInput = element(by.model('confirm_password'));
+		confirmInput.sendKeys(' ');
+
+		var lastRequiredWarn = element(by.css('#last-required'));
+		expect(lastRequiredWarn.isDisplayed()).toBe(true);
+	});
+
+	it('should not display a warning if a name is entered', function() {
+		var lastInput = element(by.model('last_name'));
+		lastInput.sendKeys('Smith');
+
+		var lastRequiredWarn = element(by.css('#last-required'));
+		expect(lastRequiredWarn.isDisplayed()).toBe(false);
 	});
 });
 
+//test suite for passwords
 describe('Password validation', function() {
 	//open the page
 	beforeEach(function() {

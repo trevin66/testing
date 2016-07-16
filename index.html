@@ -22,7 +22,7 @@
         <h4>Our service is fun and awesome, but you must be 13 years old to join</h2>
     </header>
     <main class="container">
-        <form ng-controller="FormCtrl" role="form" novalidate>
+        <form name="myForm" ng-controller="FormCtrl" role="form" novalidate>
             <div class="form-group">
                 <label for="email">Email</label>
                 <input class="form-control" id="email" type="text" name="email" ng-model="email" placeholder="email address">
@@ -34,6 +34,7 @@
             <div class="form-group">
                 <label for="last_name">Last Name</label>
                 <input class="form-control" id="last_name" type="text" name="last_name" ng-model="last_name" placeholder="your last name" required>
+                <p ng-show="myForm.last_name.$touched && myForm.last_name.$error.required">A last name is required</p>
             </div>
             <div class="form-group">
                 <label for="birthdate">Birthdate</label>
@@ -41,11 +42,14 @@
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input class="form-control" id="password" type="text" ng-model="password" name="password" required>
+                <input class="form-control" id="password" type="text" ng-model="password" name="password" ng-change="validatePassword(myForm)" required>
+                <p ng-show="myForm.password.$touched && myForm.password.$error.required">A password is required</p>
             </div>
             <div class="form-group">
                 <label for="confirm_password">Confirm Password</label>
-                <input class="form-control" id="confirm_password" type="text" ng-model="confirm_password" name="confirm_password">
+                <input class="form-control" ng-change="validatePassword(myForm)" id="confirm_password" type="text" ng-model="confirm_password" name="confirm_password" required>
+                <p ng-show="myForm.password.$error.passwordsMatch">Passwords must match.</p>
+                <p ng-show="myForm.confirm_password.$touched && myForm.confirm_password.$error.required">You must confirm your password</p>
             </div>
             <button type="button" class="btn btn-secondary" name="reset">Reset</button>
             <button type="submit" class="btn btn-primary" ng-click="submitForm()">Sign Me Up!</button>

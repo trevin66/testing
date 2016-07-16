@@ -72,36 +72,29 @@ describe('Password validation', function() {
 });
 
 // Email testing
-describe('Email required', function() {
+describe('Valid email required', function() {
 	browser.get('http://localhost:8080/#/');
-	var input_email = element(by.css('#email'));
-	var required = element(by.css('#needEmail'));
-	it('should not show error if email field is filled', function() {
-		input_email.sendKeys('pepe@meme.com');
-		expect(required.isDisplayed()).toEqual(false);
+
+	it('should not show error if valid email field is filled', function() {
+		var email = element(by.css("#email"));
+		email.sendKeys("meme@pepe.com");
+		var invalid = element(by.css("#validEmail"));
+		expect(invalid.isDisplayed()).toBe(false);
 	})
+	
+	it('should show error if email field is left invalid', function() {
+		var email = element(by.css("#email"));
+		email.sendKeys('Canada');
+		email.sendKeys('Tyler1 looks like a Geodude');
+		var invalid = element(by.css("#validEmail"));
+		expect(invalid.isDisplayed()).toBe(true);
+	})
+	
 	it('should show error if email field is left empty', function() {
-		input_email.clear();
-		input_email.sendKeys('Canada');
-		input_email.sendKeys('Tyler1 looks like a Geodude');
-		expect(required.isDisplayed()).toEqual(true);
-	})
-});
-
-describe('Valid email', function() {
-	browser.get('http://localhost:8080/#/');
-	var input_email = element(by.css('#email'));
-	var valid = element(by.css('#validEmail'));
-	it('should not show error if valid email is filled', function() {
-		input_email.sendKeys('pepe@meme.com');
-		expect(required.isDisplayed()).toEqual(false);
-	})
-
-	it('should show error if email field is invalid', function() {
-		input_email.clear();
-		input_email.sendKeys('Canada');
-		input_email.sendKeys('Tyler1 looks like a Geodude');
-		expect(required.isDisplayed()).toEqual(true);
+		var email = element(by.css("#email")); 
+		email.clear();
+		var required = element(by.css("#needEmail"));
+		expect(required.isDisplayed()).toBe(true);
 	})
 });
 
@@ -113,13 +106,12 @@ describe('Valid form filled out', function() {
 
 	it('should not allow the form to complete if there are invalid fields', function() {
 		if(errors == true) {
-			expect(submit.isEnalbed()).toEqual(false);
+			expect(submit.isEnabled()).toEqual(false);
 		}
 	})
 
 	it('should not allow the form to complete if there are blank fields', function() {
 		var email = element(by.css('#email'));
-		var fName = element(by.css('#first_name'));
 		var lName = element(by.css('#last_name'));
 		var bDay = element(by.css('#birthdate'));
 		var password = element(by.css('#password'));
@@ -127,7 +119,6 @@ describe('Valid form filled out', function() {
 
 		// fields completed
 		email.sendKeys('pepe@meme.com');
-		fName.sendKeys('Kevin');
 		lName.sendKeys('Smith');
 		bDay.sendKeys('02/14/1996');
 		password.sendKeys('supersecret');

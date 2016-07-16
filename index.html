@@ -24,31 +24,31 @@
     <main class="container">
         <form ng-controller="FormCtrl" role="form" novalidate>
             <div class="form-group">
-                <label for="email">Email:</label>
+                <label for="email">Email</label>
                 <input class="form-control" id="email" type="text" name="email" ng-model="email" placeholder="email address">
             </div>
             <div class="form-group">
-                <label for="first_name">First Name:</label>
+                <label for="first_name">First Name</label>
                 <input class="form-control" id="first_name" type="text" name="first_name" ng-model="first_name" placeholder="your first name">
             </div>
             <div class="form-group">
-                <label for="last_name">Last Name:</label>
-                <input class="form-control" id="last_name" type="text" name="last_name" ng-model="last_name" placeholder="your last name">
+                <label for="last_name">Last Name</label>
+                <input class="form-control" id="last_name" type="text" name="last_name" ng-model="last_name" placeholder="your last name" required>
             </div>
             <div class="form-group">
-                <label for="birthdate">Birthdate:</label>
+                <label for="birthdate">Birthdate</label>
                 <input class="form-control" id="birthdate" type="text" name="birthdate" ng-model="birthdate" placeholder="your birthdate">
             </div>
             <div class="form-group">
-                <label for="password">Password:</label>
-                <input class="form-control" id="password" type="text" ng-model="password" name="password">
+                <label for="password">Password</label>
+                <input class="form-control" id="password" type="text" ng-model="password" name="password" required>
             </div>
             <div class="form-group">
-                <label for="confirm_password">Password:</label>
+                <label for="confirm_password">Confirm Password</label>
                 <input class="form-control" id="confirm_password" type="text" ng-model="confirm_password" name="confirm_password">
             </div>
             <button type="button" class="btn btn-secondary" name="reset">Reset</button>
-            <button type="submit" class="btn btn-primary">Sign Me Up!</button>
+            <button type="submit" class="btn btn-primary" ng-click="submitForm()">Sign Me Up!</button>
         </form>
     </main>
 </body>

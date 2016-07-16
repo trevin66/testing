@@ -98,6 +98,42 @@ describe('Valid email required', function() {
 	})
 });
 
+// Birthdate testing
+describe('Valid birthdate required', function() {
+	browser.get('http://localhost:8080/#/');
+
+	it('should not show error if the date entered is valid', function() {
+		var birthdate = element(by.css("#birthdate"));
+		birthdate.sendKeys("06/06/1944");
+		var invalid = element(by.css("#validDate"));
+		expect(invalid.isDisplayed()).toBe(false);
+	});
+	it('should show error if the date entered is after the current date', function() {
+		var birthdate = element(by.css("#birthdate"));
+		birthdate.sendKeys('12/32/1999');
+		var invalid = element(by.css("#validDate"));
+		expect(invalid.isDisplayed()).toBe(true);
+	});
+	it('should show error if the date entered is less than 13 years ago', function() {
+		var birthdate = element(by.css("#birthdate"));
+		birthdate.sendKeys('10/10/2010');
+		var invalid = element(by.css("#validDate"));
+		expect(invalid.isDisplayed()).toBe(true);
+	});
+	it('should show error if the date entered is older than the oldest person alive', function() {
+		var birthdate = element(by.css("#birthdate"));
+		birthdate.sendKeys('07/04/1776');
+		var invalid = element(by.css("#validDate"));
+		expect(invalid.isDisplayed()).toBe(true);
+	});
+	it('should show error if birthday field is left empty', function() {
+		var birthdate = element(by.css("#birthdate")); 
+		birthdate.clear();
+		var required = element(by.css("#needBirthdate"));
+		expect(required.isDisplayed()).toBe(true);
+	});
+});
+
 // Submit form testing
 describe('Valid form filled out', function() {
 	browser.get('http://localhost:8080/#/');

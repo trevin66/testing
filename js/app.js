@@ -23,6 +23,19 @@ app.controller('FormCtrl', ['$scope', function($scope) {
 		var minDay = today.getDate();
 		
 		function monthDay() {
+			if (year > today.getFullYear()){
+				return false;
+			}
+			if(year == today.getFullYear()){
+				if(month > minMonth){
+					return false;
+				}
+				if(month == minMonth){
+					if(day > minDay){
+						return false;
+					}
+				}
+			}
 			if(month < 0 || month > 11){
 				return false
 			}

@@ -31,16 +31,21 @@
             </div>
             <div class="form-group">
                 <label for="first_name">First Name</label>
-                <input class="form-control" id="first_name" type="text" name="first_name" ng-model="first_name" placeholder="your first name">
+                <input class="form-control" id="first_name" type="text" name="first_name" ng-model="first_name" placeholder="your first name" required>
+                <p id="first-required" class="help-block" ng-show="myForm.first_name.$touched && myForm.first_name.$error.required">A first name is required.</p>
             </div>
             <div class="form-group">
                 <label for="last_name">Last Name</label>
                 <input class="form-control" id="last_name" type="text" name="last_name" ng-model="last_name" placeholder="your last name" required>
-                <p id="last-required" class="help-block" ng-show="myForm.last_name.$touched && myForm.last_name.$error.required">A last name is required</p>
+                <p id="last-required" class="help-block" ng-show="myForm.last_name.$touched && myForm.last_name.$error.required">A last name is required.</p>
             </div>
             <div class="form-group">
                 <label for="birthdate">Birthdate:</label>
-                <input class="form-control" id="birthdate" type="text" name="birthdate" ng-model="birthdate" placeholder="mm/dd/yyyy">
+                <input class="form-control" id="birthdate" type="text" name="birthdate" ng-model="birthdate" placeholder="Your Birthdate" ng-change="validateBirthdate(myForm)" required>
+                <p id="birthdate required" ng-show="myForm.birthdate.$touched && myForm.birthdate.$error.required">A birthdate is required.</p>
+                <p id="valid date" ng-show="myForm.birthdate.$error.validDate">You must enter a valid date.</p>
+                <p id="old enough" ng-show="myForm.birthdate.$error.minYear">You must be at least 13.</p>
+                <p id="too old" ng-show="myForm.birthdate.$error.maxYear">As of 13 May 2016 there is only one person born before 30 November 2016.</p>
             </div>
             <div class="form-group">
                 <label for="password">Password</label>

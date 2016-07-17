@@ -7,6 +7,7 @@ app.controller('FormCtrl', ['$scope', function($scope) {
 	$scope.showHide = function() {
 		$scope.visible = $scope.visible ? false : true;
 	}
+
 	//validate matching passwords
 	$scope.validatePassword = function (myForm) {
 		myForm.password.$setValidity('passwordsMatch', $scope.password === $scope.confirm_password);

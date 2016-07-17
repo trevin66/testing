@@ -73,29 +73,29 @@ describe('Password validation', function() {
 
 // Email testing
 describe('Valid email required', function() {
+	var text = element(by.binding('email.text'));
+	var input = element(by.model('email.text'));
+	var invalid = element(by.binding('myForm.email.$valid'));
 	browser.get('http://localhost:8080/#/');
 
-	it('should not show error if valid email field is filled', function() {
-		var email = element(by.css("#email"));
-		email.sendKeys("meme@pepe.com");
-		var invalid = element(by.css("#validEmail"));
-		expect(invalid.isDisplayed()).toBe(false);
-	})
+	it('should initialize to model', function() {
+		expect(text.getText()).toContain('meme@spicy.com');
+		expect(valid.getText()).toContain('true');
+	});
 	
-	it('should show error if email field is left invalid', function() {
-		var email = element(by.css("#email"));
-		email.sendKeys('Canada');
-		email.sendKeys('Tyler1 looks like a Geodude');
-		var invalid = element(by.css("#validEmail"));
-		expect(invalid.isDisplayed()).toBe(true);
-	})
-	
-	it('should show error if email field is left empty', function() {
-		var email = element(by.css("#email"));
+	it('should state that an email is required if empty', function() {
 		email.clear();
-		var required = element(by.css("#needEmail"));
-		expect(required.isDisplayed()).toBe(true);
-	})
+		email.sendKeys('');
+		expect(text.getText()).toEqual('text =');
+		expect(valid.getText()).toContain('false');
+	});
+	
+	it('should show error if field is invalid', function() {
+		input.clear();
+		input.sendKeys('Tyler1 looks like a Geodude');
+		input.sendKeys('xxxx');
+		expect(valid.getText()).toContain('false');
+	});
 });
 
 // Birthdate testing
@@ -109,7 +109,7 @@ describe('Valid birthdate required', function() {
 		expect(invalid.isDisplayed()).toBe(false);
 	});
 	it('should show error if the date entered is after the current date', function() {
-		var birthdate = element(by.css("#birthdate"));
+		var birthdate = element(by.css( 	"#birthdate"));
 		birthdate.sendKeys('12/32/1999');
 		var invalid = element(by.css("#validDate"));
 		expect(invalid.isDisplayed()).toBe(true);

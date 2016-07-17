@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="John Harrison, Wendy Kang, Trevin Roberts, Shubhankar Seth">
 
-    <title></title>
+    <title>Sign Up!</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <!-- load Angular -->
@@ -19,28 +20,28 @@
 <body>
     <header class="container">
         <h1>Sign Up</h1>
-        <h4>Our service is fun and awesome, but you must be 13 years old to join</h2>
+        <h4>Our service is fun and awesome, but you must be 13 years old to join.</h2>
     </header>
     <main class="container">
         <form name="myForm" ng-controller="FormCtrl" role="form" novalidate>
             <div class="form-group">
                 <label for="email">Email</label>
-                <input class="form-control" id="email" type="text" name="email" ng-model="email" placeholder="Email address" required></input>
-                <p id="needEmail" class="help-block" ng-show="myForm.email.$error.required && myForm.email.$touched">An email is required.</p>
-                <p id="validEmail" class="help-block" ng-show="myForm.email.$invalid && myForm.email.$touched">This is not a valid email address.</p>
+                <input class="form-control" id="email" type="email" name="email" ng-model="email.text" placeholder="Email address" required></input>
+                <p id="required_email" class="help-block" ng-show="myForm.email.$error.required && myForm.email.$touched">An email is required.</p>
+                <p id="invalid_email" class="help-block" ng-show="myForm.email.$error.email">This is not a valid email address.</p>
             </div>
             <div class="form-group">
                 <label for="first_name">First Name</label>
-                <input class="form-control" id="first_name" type="text" name="first_name" ng-model="first_name" placeholder="your first name">
+                <input class="form-control" id="first_name" type="text" name="first_name" ng-model="first_name" placeholder="Your first name">
             </div>
             <div class="form-group">
                 <label for="last_name">Last Name</label>
-                <input class="form-control" id="last_name" type="text" name="last_name" ng-model="last_name" placeholder="your last name" required>
+                <input class="form-control" id="last_name" type="text" name="last_name" ng-model="last_name" placeholder="Your last name" required>
                 <p id="last-required" class="help-block" ng-show="myForm.last_name.$touched && myForm.last_name.$error.required">A last name is required.</p>
             </div>
             <div class="form-group">
                 <label for="birthdate">Birthdate:</label>
-                <input class="form-control" id="birthdate" type="text" name="birthdate" ng-model="birthdate" placeholder="Your Birthdate" ng-change="validateBirthdate(myForm)" required>
+                <input class="form-control" id="birthdate" type="text" name="birthdate" ng-model="birthdate" placeholder="Your birthdate" ng-change="validateBirthdate(myForm)" required>
                 <p id="needBirthdate" ng-show="myForm.birthdate.$touched && myForm.birthdate.$error.required">A birthdate is required.</p>
                 <p id="validDate" ng-show="myForm.birthdate.$error.validDate">You must enter a valid date.</p>
                 <p id="oldEnough" ng-show="myForm.birthdate.$error.minYear">You must be at least 13.</p>
